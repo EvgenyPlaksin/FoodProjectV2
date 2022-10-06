@@ -3,16 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.coin_list.fragment.MealFragment">
 
-    <TextView
-        android:id="@+id/TextViewFragment"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="15dp"
+            android:paddingVertical="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_text_layout"
+                style="@style/OutlinedRoundedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:inputType="text"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_search_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:hint="@string/search"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recipes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_recipe" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading_layout"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:visibility="gone"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:textSize="25sp"
-        android:layout_height="wrap_content"
-        android:text="Click to get recipes!" />
-
+        android:textColor="@color/black"
+        tools:text="Nothing found"/>
 
 </FrameLayout>

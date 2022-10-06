@@ -18,7 +18,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePaprikaApi(): MealApi {
+    fun provideMealApi(): MealApi {
         return Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

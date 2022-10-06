@@ -1,5 +1,6 @@
 package com.example.a45myapplication.domain.get_meals
 
+import android.util.Log
 import com.example.a45myapplication.common.Resource
 import com.example.a45myapplication.data.remote.dto.toMeal
 import com.example.a45myapplication.domain.model.Meal
@@ -19,7 +20,12 @@ class GetMealsUseCase @Inject constructor(
             val meals = repository.getMeals((query))
             emit(Resource.Success(meals.toMeal()))
         }catch (e: HttpException){
-            emit(Resource.Error(e.localizedMessage ?:"An unexpected error occured"))
+            if(e.localizedMessage == "HTTP 400 Bad Request") {
+                emit(Resource.Error("Nothing found"))
+            } else {
+                emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
+            }
+            Log.e("TAG", "e -> ${e.localizedMessage}")
         }catch (e: IOException){
             emit(Resource.Error("Couldn't reach server. Check your internet connection"))
         }

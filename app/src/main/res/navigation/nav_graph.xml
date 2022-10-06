@@ -3,11 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mealFragment">
+    app:startDestination="@id/MealFragment">
 
     <fragment
-        android:id="@+id/mealFragment"
+        android:id="@+id/MealFragment"
         android:name="com.example.a45myapplication.presentation.coin_list.fragment.MealFragment"
         android:label="fragment_meal"
-        tools:layout="@layout/fragment_meal" />
+        tools:layout="@layout/fragment_meal" >
+        <action
+            android:id="@+id/action_MealFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FavoritesFragment"
+        android:name="com.example.a45myapplication.presentation.favourites.fragment.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/HistoryFragment"
+        android:name="com.example.a45myapplication.presentation.search_history.fragment.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.a45myapplication.presentation.web_view.fragment.WebViewFragment"
+        android:label="WebViewFragment">
+        <argument
+            android:name="url"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
 </navigation>
