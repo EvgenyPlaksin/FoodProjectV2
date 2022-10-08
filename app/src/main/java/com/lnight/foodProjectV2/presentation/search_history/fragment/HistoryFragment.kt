@@ -39,10 +39,14 @@ class HistoryFragment : Fragment(), OnHistoryClick, OnRemoveResentClick {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
         observeGetResents()
         viewModel.getResents()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             binding.loadingLayout.rootLoading.setBackgroundColor(resources.getColor(R.color.gray_dark, requireActivity().theme))
         } else {
@@ -57,6 +61,12 @@ class HistoryFragment : Fragment(), OnHistoryClick, OnRemoveResentClick {
             val adapter = HistoryAdapter(saveListResents, this, this)
             binding.rvResents.adapter = adapter
             binding.rvResents.setHasFixedSize(true)
+            viewModel.getResents()
+        } else {
+            binding.rvResents.isVisible = false
+            binding.loadingLayout.root.isVisible = false
+            binding.retrySection.isVisible = true
+            binding.errorText.text = "Nothing here"
         }
     }
 

@@ -1,5 +1,6 @@
 package com.lnight.foodProjectV2.presentation.favourites.fragment
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -41,10 +42,14 @@ class FavoritesFragment : Fragment(), OnRemoveClick, OnFavoriteClick {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
         observeGetFavorites()
         viewModel.getFavorites()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             binding.loadingLayout.rootLoading.setBackgroundColor(resources.getColor(R.color.gray_dark, requireActivity().theme))
         } else {
@@ -57,6 +62,12 @@ class FavoritesFragment : Fragment(), OnRemoveClick, OnFavoriteClick {
         if(saveList.isNotEmpty()) {
             binding.rvRecipes.adapter = FavoritesAdapter(saveList, this, this)
             binding.rvRecipes.setHasFixedSize(true)
+            viewModel.getFavorites()
+        } else {
+            binding.rvRecipes.isVisible = false
+            binding.loadingLayout.root.isVisible = false
+            binding.retrySection.isVisible = true
+            binding.errorText.text = "Nothing here"
         }
     }
 
@@ -70,7 +81,6 @@ class FavoritesFragment : Fragment(), OnRemoveClick, OnFavoriteClick {
                         binding.retrySection.isVisible = false
 
                         recipesList = it.data as MutableList<Recipe>
-                        Log.e("TAG", "recipeList -> $recipesList")
                         val adapter = FavoritesAdapter(recipesList, this, this)
                         binding.rvRecipes.adapter = adapter
                         adapter.notifyDataSetChanged()
