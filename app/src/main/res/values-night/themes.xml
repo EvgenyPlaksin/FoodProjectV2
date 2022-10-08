@@ -24,4 +24,22 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="DialogBg" parent="">
+        <item name="android:background">#282C34</item>
+        <item name="android:elevation">15dp</item>
+    </style>
+
+    <style name="IconsTint" parent="">
+        <item name="android:tint">@color/white</item>
+    </style>
+
+        <style name="LoadingBg" parent="">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="TextColor" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
 </resources>
