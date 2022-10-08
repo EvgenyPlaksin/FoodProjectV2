@@ -7,30 +7,45 @@
 
     <fragment
         android:id="@+id/MealFragment"
-        android:name="com.example.a45myapplication.presentation.coin_list.fragment.MealFragment"
+        android:name="com.lnight.foodProjectV2.presentation.coin_list.fragment.MealFragment"
         android:label="fragment_meal"
         tools:layout="@layout/fragment_meal" >
         <action
             android:id="@+id/action_MealFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
+        <argument
+            android:name="resent"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/FavoritesFragment"
-        android:name="com.example.a45myapplication.presentation.favourites.fragment.FavoritesFragment"
+        android:name="com.lnight.foodProjectV2.presentation.favourites.fragment.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_FavoritesFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/HistoryFragment"
-        android:name="com.example.a45myapplication.presentation.search_history.fragment.HistoryFragment"
+        android:name="com.lnight.foodProjectV2.presentation.search_history.fragment.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_HistoryFragment_to_MealFragment"
+            app:destination="@id/MealFragment" />
+    </fragment>
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.example.a45myapplication.presentation.web_view.fragment.WebViewFragment"
+        android:name="com.lnight.foodProjectV2.presentation.web_view.fragment.WebViewFragment"
         android:label="WebViewFragment">
+
         <argument
-            android:name="url"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:name="recipe"
+            app:argType="com.lnight.foodProjectV2.data.remote.dto.Recipe"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
     </fragment>
 </navigation>

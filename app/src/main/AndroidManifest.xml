@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name="com.example.a45myapplication.MealApplication"
+        android:name="com.lnight.foodProjectV2.MealApplication"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,7 +17,7 @@
         android:theme="@style/Theme.45MyApplication"
         tools:targetApi="31">
         <activity
-            android:name="com.example.a45myapplication.presentation.MainActivity"
+            android:name="com.lnight.foodProjectV2.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
